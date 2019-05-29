@@ -71,6 +71,7 @@ static char *str2int(const char *src, int radix, long int lower,
 {
 	char *endptr;
 
+	endptr = NULL;
 	*val = strtol(src, &endptr, radix);
 
 	if (*val < lower) {
@@ -81,7 +82,7 @@ static char *str2int(const char *src, int radix, long int lower,
 		*val = upper;
 		return NULL;
 	}
-	if (endptr != '\0') {
+	if (endptr != NULL && *endptr != '\0') {
 		return NULL;
 	}
 	return (char *)src;
